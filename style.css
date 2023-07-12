@@ -35,3 +35,12 @@ html, body {
 .wave + .wave {
   z-index: 2;
 }
+.hero {
+  width: 100%;
+  height: 500px;
+  background-image: url('/1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}

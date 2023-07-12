@@ -128,6 +128,7 @@ function wavify(wave_element, options) {
       totalTime += elapsed;
 
       var factor = totalTime * Math.PI;
+      // var factor = 0;
       tweenMaxInstance = TweenMax.to(wave, settings.speed, {
         attr: {
           d: drawPath(drawPoints(factor))
