@@ -17,6 +17,8 @@ function init() {
       strokeWidth: 5,
       fillColor: "transparent",
       speed: 0.25,
+      container: '.hero',
+      fillable: false,
     });
   }
   // stroke line
@@ -28,6 +30,8 @@ function init() {
     strokeWidth: 0,
     fillColor: "#ffffff",
     speed: 0.25,
+    container: '.hero',
+    fillable: true,
   });
 }
 

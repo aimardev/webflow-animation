@@ -24,7 +24,8 @@ function wavify(wave_element, options) {
       // Color
       strokeWidth: 1,
       strokeColor: "rgba(255,255,255, 0.20)",
-      fillColor: "rgba(255,255,255, 0.20)"
+      fillColor: "rgba(255,255,255, 0.20)",
+      fillable: false,
     },
     options
   );
