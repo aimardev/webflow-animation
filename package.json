@@ -1,0 +1,23 @@
+{
+  "name": "dist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "TweenMax.min.js",
+  "scripts": {
+    "start": "http-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/aimardev/webflow-animation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aimardev/webflow-animation/issues"
+  },
+  "homepage": "https://github.com/aimardev/webflow-animation#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

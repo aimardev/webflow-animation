@@ -62,7 +62,7 @@ function wavify(wave_element, options) {
     return points;
   }
 
-  function drawPath(points) {
+  function drawPath(points, fillable) {
     var SVGString = "M " + points[0].x + " " + points[0].y;
 
     var cp0 = {
@@ -111,8 +111,10 @@ function wavify(wave_element, options) {
       inverted = -inverted;
     }
 
-    SVGString += " L " + width + " " + height;
-    SVGString += " L 0 " + height + " Z";
+    if(fillable) {
+      SVGString += " L " + width + " " + height;
+      SVGString += " L 0 " + height + " Z";
+    }
     return SVGString;
   }
 
@@ -132,7 +134,7 @@ function wavify(wave_element, options) {
       // var factor = 0;
       tweenMaxInstance = TweenMax.to(wave, settings.speed, {
         attr: {
-          d: drawPath(drawPoints(factor))
+          d: drawPath(drawPoints(factor), settings.fillable)
         },
         ease: Power1.easeInOut
       });
