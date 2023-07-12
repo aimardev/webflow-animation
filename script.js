@@ -8,9 +8,11 @@ var wave1 = $('#feel-the-wave').wavify({
 
 var wave2 = $('#feel-the-wave-two').wavify({
   height: 60,
-  bones: 3,
+  bones: 5,
   amplitude: 40,
   strokeColor: 'rgba(150, 97, 255, .8)',
+  strokeWidth: 4,
+  fillColor: 'rgba(150, 97, 255, .6)',
   speed: .25
 });
 

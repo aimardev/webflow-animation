@@ -22,6 +22,7 @@ function wavify(wave_element, options) {
       // Total number of articulation in wave
       bones: 3,
       // Color
+      strokeWidth: 1,
       strokeColor: "rgba(255,255,255, 0.20)",
       fillColor: "rgba(255,255,255, 0.20)"
     },
@@ -173,7 +174,7 @@ function wavify(wave_element, options) {
 
   function boot() {
     if (!animationInstance) {
-      tweenMaxInstance = TweenMax.set(wave, { attr: { stroke: settings.strokeColor, fill: settings.fillColor } });
+      tweenMaxInstance = TweenMax.set(wave, { attr: { stroke: settings.strokeColor, "stroke-width": settings.strokeWidth, fill: settings.fillColor } });
       play();
       window.addEventListener("resize", redraw);
     }
@@ -184,7 +185,7 @@ function wavify(wave_element, options) {
     if (typeof options !== undefined) {
       rebuilSettings(options);
     }
-    tweenMaxInstance = TweenMax.set(wave, { attr: { stroke: settings.strokeColor, fill: settings.fillColor } });
+    tweenMaxInstance = TweenMax.set(wave, { attr: { stroke: settings.strokeColor, "stroke-width": settings.strokeWidth,  fill: settings.fillColor } });
     play();
     window.addEventListener("resize", redraw);
   }
@@ -210,7 +211,7 @@ function wavify(wave_element, options) {
       options.color = settings.strokeColor;
     }
     tweenMaxInstance = TweenMax.to(wave, parseInt(options.timing), {
-      attr: { stroke: options.color },
+      attr: { stroke: options.color, "stroke-width": settings.strokeWidth,  },
       onComplete: function() {
         if (
           typeof options.onComplete !== undefined &&
