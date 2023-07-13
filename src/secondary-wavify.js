@@ -26,7 +26,6 @@ function secondWavify(wave_element, options) {
       strokeColor: "rgba(255,255,255, 0.20)",
       fillColor: "rgba(255,255,255, 0.20)",
       fillable: false,
-      callback: null,
     },
     options
   );
@@ -50,6 +49,77 @@ function secondWavify(wave_element, options) {
     settings = Object.assign({}, settings, params);
   }
 
+  function drawPoints(factor) {
+    var points = [];
+
+    for (var i = 0; i <= settings.bones; i++) {
+      var x = (i / settings.bones) * width;
+      var sinSeed =
+        (factor + (i + (i % settings.bones))) * settings.speed * 100;
+      var sinHeight = Math.sin(sinSeed / 100) * settings.amplitude;
+      var yPos = Math.sin(sinSeed / 100) * sinHeight + settings.height;
+      points.push({ x: x, y: yPos });
+    }
+
+    return points;
+  }
+
+  function drawPath(points, fillable) {
+    var SVGString = "M " + points[0].x + " " + points[0].y;
+
+    var cp0 = {
+      x: (points[1].x - points[0].x) / 2,
+      y: points[1].y - points[0].y + points[0].y + (points[1].y - points[0].y),
+    };
+
+    SVGString +=
+      " C " +
+      cp0.x +
+      " " +
+      cp0.y +
+      " " +
+      cp0.x +
+      " " +
+      cp0.y +
+      " " +
+      points[1].x +
+      " " +
+      points[1].y;
+
+    var prevCp = cp0;
+    var inverted = -1;
+
+    for (var i = 1; i < points.length - 1; i++) {
+      var cpLength = Math.sqrt(prevCp.x * prevCp.x + prevCp.y * prevCp.y);
+      var cp1 = {
+        x: points[i].x - prevCp.x + points[i].x,
+        y: points[i].y - prevCp.y + points[i].y,
+      };
+
+      SVGString +=
+        " C " +
+        cp1.x +
+        " " +
+        cp1.y +
+        " " +
+        cp1.x +
+        " " +
+        cp1.y +
+        " " +
+        points[i + 1].x +
+        " " +
+        points[i + 1].y;
+      prevCp = cp1;
+      inverted = -inverted;
+    }
+
+    if (fillable) {
+      SVGString += " L " + width + " " + height;
+      SVGString += " L 0 " + height + " Z";
+    }
+    return SVGString;
+  }
+
   //  Draw function
   //
   //
@@ -59,14 +129,17 @@ function secondWavify(wave_element, options) {
     if (lastUpdate) {
       var elapsed = (now - lastUpdate) / 1000;
       lastUpdate = now;
+
       totalTime += elapsed;
-      if (settings.callback) {
-        tweenMaxInstance = settings.callback(settings, {
-          totalTime,
-          width,
-          height,
-        });
-      }
+
+      var factor = totalTime * Math.PI;
+      // var factor = 0;
+      tweenMaxInstance = TweenMax.to(wave, settings.speed, {
+        attr: {
+          d: drawPath(drawPoints(factor), settings.fillable),
+        },
+        ease: Power1.easeInOut,
+      });
     } else {
       lastUpdate = now;
     }
