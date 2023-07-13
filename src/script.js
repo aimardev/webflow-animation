@@ -9,11 +9,12 @@ function addStrokeLineWaves() {
     // wavify(wave, {
       height: 60 + waveIdx * 60,
       bones: 5,
+      sections: 20,
       amplitude: 30,
       strokeColor: "transparent",
       strokeWidth: 0,
       fillColor: "#ffffff",
-      speed: 0.25,
+      speed: 1.5,      
       segments: 100,
       frequency: 6,
       container: ".hero-next",
