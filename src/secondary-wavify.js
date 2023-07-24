@@ -5,7 +5,7 @@
  */
 function secondWavify(wave_element, options) {
   if ("undefined" === typeof options) options = {};
-
+  if (!document.querySelector(options.container)) return;
   //  Options
   //
   //
@@ -62,7 +62,7 @@ function secondWavify(wave_element, options) {
           amplitude / 2 +
           amplitude * Math.sin(factor * settings.speed * Math.PI + delta) +
           settings.height;
-        points.push({ x, y });        
+        points.push({ x, y });
       }
     }
 
@@ -76,7 +76,6 @@ function secondWavify(wave_element, options) {
       SVGString += `L ${points[i].x} ${points[i].y}`;
     }
 
-    
     return SVGString;
   }
 
