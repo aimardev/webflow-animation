@@ -56,8 +56,8 @@ function wavify(wave_element, options) {
       var x = (i / settings.bones) * width;
       var sinSeed =
         (factor + (i % settings.bones)) * settings.speed * 100;
-      var sinHeight = Math.sin(sinSeed / 100) * settings.amplitude;
-      var yPos = Math.sin(sinSeed / 100) * sinHeight + settings.height;
+      var sinHeight = Math.sin(sinSeed / 100) * settings.amplitude * height;
+      var yPos = Math.sin(sinSeed / 100) * sinHeight + settings.height * height;
       points.push({ x: x, y: yPos });
     }
 
@@ -198,7 +198,7 @@ function wavify(wave_element, options) {
       tweenMaxInstance = TweenMax.set(wave, {
         attr: {
           stroke: settings.strokeColor,
-          "stroke-width": settings.strokeWidth,
+          "stroke-width": settings.strokeWidth * height,
           fill: settings.fillColor,
         },
       });
@@ -215,7 +215,7 @@ function wavify(wave_element, options) {
     tweenMaxInstance = TweenMax.set(wave, {
       attr: {
         stroke: settings.strokeColor,
-        "stroke-width": settings.strokeWidth,
+        "stroke-width": settings.strokeWidth * height,
         fill: settings.fillColor,
       },
     });
@@ -244,7 +244,7 @@ function wavify(wave_element, options) {
       options.color = settings.strokeColor;
     }
     tweenMaxInstance = TweenMax.to(wave, parseInt(options.timing), {
-      attr: { stroke: options.color, "stroke-width": settings.strokeWidth },
+      attr: { stroke: options.color, "stroke-width": settings.strokeWidth * width },
       onComplete: function () {
         if (
           typeof options.onComplete !== undefined &&
