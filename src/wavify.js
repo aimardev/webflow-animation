@@ -33,7 +33,7 @@ function wavify(wave_element, options) {
   var wave = wave_element,
     width = document
       .querySelector(settings.container)
-      .getBoundingClientRect().width,
+      .getBoundingClientRect().width * 2,
     height = document
       .querySelector(settings.container)
       .getBoundingClientRect().height,
@@ -55,7 +55,7 @@ function wavify(wave_element, options) {
     for (var i = 0; i <= settings.bones; i++) {
       var x = (i / settings.bones) * width;
       var sinSeed =
-        (factor + (i + (i % settings.bones))) * settings.speed * 100;
+        (factor + (i % settings.bones)) * settings.speed * 100;
       var sinHeight = Math.sin(sinSeed / 100) * settings.amplitude;
       var yPos = Math.sin(sinSeed / 100) * sinHeight + settings.height;
       points.push({ x: x, y: yPos });
@@ -166,19 +166,32 @@ function wavify(wave_element, options) {
 
   //  Redraw for resize with debounce
   //
-  var redraw = debounce(function () {
+  // var redraw = debounce(function () {
+  //   pause();
+  //   points = [];
+  //   totalTime = 0;
+  //   width = document
+  //     .querySelector(settings.container)
+  //     .getBoundingClientRect().width;
+  //   height = document
+  //     .querySelector(settings.container)
+  //     .getBoundingClientRect().height;
+  //   lastUpdate = false;
+  //   play();
+  // }, 90);
+  var redraw = function () {
     pause();
     points = [];
     totalTime = 0;
     width = document
       .querySelector(settings.container)
-      .getBoundingClientRect().width;
+      .getBoundingClientRect().width * 2;
     height = document
       .querySelector(settings.container)
       .getBoundingClientRect().height;
     lastUpdate = false;
     play();
-  }, 250);
+  };
 
   function boot() {
     if (!animationInstance) {
