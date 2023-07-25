@@ -8,7 +8,7 @@ function addStrokeLineWaves() {
      secondWavify(wave, {
     // wavify(wave, {
       height: 60 + waveIdx * 60,
-      bones: 5,
+      bones: 10,
       sections: 20,
       amplitude: 30,
       strokeColor: "transparent",
@@ -16,7 +16,7 @@ function addStrokeLineWaves() {
       fillColor: "#ffffff",
       speed: 1.5,      
       segments: 100,
-      frequency: 6,
+      frequency: 1,
       container: ".hero-next",
       fillable: false,  
     });
@@ -41,7 +41,7 @@ function init() {
     });
   }
   // stroke line
-  wavify(document.querySelector("#feel-the-wave-two"), {
+  wavify(document.querySelector(".feel-the-wave-two"), {
     height: 300,
     bones: 5,
     amplitude: 40,
