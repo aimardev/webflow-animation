@@ -8,7 +8,8 @@ function addStrokeLineWaves() {
      secondWavify(wave, {
     // wavify(wave, {
       height: 60 + waveIdx * 60,
-      bones: 10,
+      bones: 15,
+      originalWidth: 1440, 
       sections: 20,
       amplitude: 30,
       strokeColor: "transparent",

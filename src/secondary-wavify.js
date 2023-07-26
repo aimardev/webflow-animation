@@ -51,10 +51,10 @@ function secondWavify(wave_element, options) {
 
   function drawPoints(factor) {
     var points = [];
-    const { amplitude } = settings;
-
-    const unitWidth = width / settings.bones;
-    for (let i = 0; i <= settings.bones; i++) {
+    const { amplitude, originalWidth, bones } = settings;
+    const expectedCount = Math.ceil(bones / originalWidth * width)
+    const unitWidth = width / expectedCount;
+    for (let i = 0; i <= expectedCount; i++) {
       for (let j = 0; j < settings.sections; j++) {
         const x = i * unitWidth + (j / settings.sections) * unitWidth;
         const delta = (j / settings.sections) * 2 * Math.PI;
