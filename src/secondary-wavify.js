@@ -21,6 +21,7 @@ function secondWavify(wave_element, options) {
       speed: 0.15,
       // Total number of articulation in wave
       bones: 3,
+      originalWidth: 1440,
       // Color
       strokeWidth: 1,
       strokeColor: "rgba(255,255,255, 0.20)",
