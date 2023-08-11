@@ -262,3 +262,4 @@ function onLessonWork(user, itemID) {
     document.querySelector('#course-filter-in-completed').addEventListener('change', () => onFilteringCourseLessons('incompleted'))   
 
 }
+window.onLessonWork = onLessonWork
